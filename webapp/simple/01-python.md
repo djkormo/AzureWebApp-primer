@@ -10,9 +10,10 @@
 ###### ustawienie domyslnej lokalizacji
 > az configure --defaults location=northeurope
 
-> ######  utworzenie aplikacji 
+######  utworzenie aplikacji 
 > az webapp up -n mypython2019 --sku S1
 
+######  Logi 
 
 > Creating Resource group 'appsvc_rg_Linux_northeurope' ...
 

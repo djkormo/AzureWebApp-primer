@@ -20,7 +20,8 @@
 ###### aktualizacja kodu 
 > az webapp up --name mystaticapp2019 --sku F1
 
-
+###### logi
+ 
 > {
 >   "app_url": "http://mystaticapp2019.azurewebsites.net",
 

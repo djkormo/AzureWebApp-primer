@@ -14,6 +14,8 @@
 ###### utworzenie aplikacji  
 > az webapp up -n mychess2019 --sku B1
 
+##### Logi 
+
 > Resource group 'appsvc_rg_Linux_northeurope' already exists.
 
 > Creating App service plan 'appsvc_asp_Linux_northeurope' ...
@@ -33,6 +35,7 @@
 > Getting scm site credentials for zip deployment
 
 > Starting zip deployment
+
 
 > All done.
 
