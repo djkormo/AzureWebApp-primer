@@ -13,6 +13,16 @@
     "sku":{
       "type": "string",
       "defaultValue" : "S1",
+	  "allowedValues": [
+       
+        "D1",
+        "B1",
+        "B2",
+        "B3",
+        "S1",
+        "S2",
+        "S3"
+      ],
       "metadata": {
         "description": "The SKU of App Service Plan "
       }
