@@ -1,4 +1,7 @@
-# Deploy a app service plan and a basic Windows web app
+### Na podstawie https://github.com/Azure/azure-quickstart-templates/tree/master/101-webapp-basic-windows 
+
+#### Budowa aplikacji www na platformie Windows
+
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fgithub.com%2FAzure%2Fazure-quickstart-templates%2Ftree%2Fmaster%2F101-webapp-basic-windows%2Fazuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
