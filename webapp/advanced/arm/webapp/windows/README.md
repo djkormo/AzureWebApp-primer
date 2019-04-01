@@ -11,8 +11,7 @@
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png"/>
 </a>
 
-## Description
-This template allows you to deploy an app service plan and a basic Windows web app. 
+
 
 
 
