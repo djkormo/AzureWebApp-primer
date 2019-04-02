@@ -1,45 +1,53 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "serverName": {
-            "type": "string",
-            "metadata": {
-                "description": "Server Name for Azure database for MySQL"
-            }
-        },
         "administratorLogin": {
-            "type": "string",
-            "minLength": 1,
+            "defaultValue": "mysql",
+            "minLength": 3,
+            "type": "String",
             "metadata": {
                 "description": "Database administrator login name"
             }
         },
         "administratorLoginPassword": {
-            "type": "securestring",
             "minLength": 8,
+            "type": "SecureString",
             "metadata": {
                 "description": "Database administrator password"
             }
         },
+        "location": {
+            "defaultValue": "[resourceGroup().location]",
+            "type": "String"
+        },
+        "serverName": {
+            "type": "String"
+        },
         "skuCapacity": {
-            "type": "int",
             "defaultValue": 2,
-			"allowedValues": [
+            "allowedValues": [
                 2,
                 4,
                 8,
                 16,
                 32
             ],
+            "type": "Int",
             "metadata": {
                 "description": "Azure database for MySQL compute capacity in vCores (2,4,8,16,32)"
             }
         },
+        "skuFamily": {
+            "defaultValue": "Gen5",
+            "type": "String",
+            "metadata": {
+                "description": "Azure database for MySQL sku family"
+            }
+        },
         "skuName": {
-            "type": "string",
             "defaultValue": "GP_Gen5_2",
-			"allowedValues": [
+            "allowedValues": [
                 "GP_Gen5_2",
                 "GP_Gen5_4",
                 "GP_Gen5_8",
@@ -51,154 +59,58 @@
                 "MO_Gen5_16",
                 "MO_Gen5_32"
             ],
+            "type": "String",
             "metadata": {
                 "description": "Azure database for MySQL sku name "
             }
         },
-        "SkuSizeMB": {
-            "type": "int",
-            "defaultValue": 5120,
-			"allowedValues": [
+        "skuSizeMB": {
+            "defaultValue": 51200,
+            "allowedValues": [
                 102400,
                 51200
             ],
+            "type": "Int",
             "metadata": {
                 "description": "Azure database for MySQL Sku Size "
             }
         },
-        "SkuTier": {
-            "type": "string",
+        "skuTier": {
             "defaultValue": "GeneralPurpose",
+            "allowedValues": [
+                "Basic",
+                "GeneralPurpose",
+                "MemoryOptimized"
+            ],
+            "type": "String",
             "metadata": {
                 "description": "Azure database for MySQL pricing tier"
             }
         },
-        "skuFamily": {
-            "type": "string",
-            "defaultValue": "Gen5",
-            "metadata": {
-                "description": "Azure database for MySQL sku family"
-            }
-        },
-        "mysqlVersion": {
-            "type": "string",
+        "version": {
+            "defaultValue": "5.7",
             "allowedValues": [
                 "5.6",
                 "5.7"
             ],
-            "defaultValue": "5.7",
+            "type": "String",
             "metadata": {
                 "description": "MySQL version"
             }
         },
-        "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
-            "metadata": {
-                "description": "Location for all resources."
-            }
-        },
         "backupRetentionDays": {
-            "type": "int",
             "defaultValue": 7,
-            "metadata": {
-                "description": "MySQL Server backup retention days"
-            }
+            "type": "Int"
         },
         "geoRedundantBackup": {
-            "type": "string",
             "defaultValue": "Disabled",
-            "metadata": {
-                "description": "Geo-Redundant Backup setting"
-            }
-        },
-        "virtualNetworkName": {
-            "type": "string",
-            "defaultValue": "azure_mysql_vnet",
-            "metadata": {
-                "description": "Virtual Network Name"
-            }
-        },
-        "subnetName": {
-            "type": "string",
-            "defaultValue": "azure_mysql_subnet",
-            "metadata": {
-                "description": "Subnet Name"
-            }
-        },
-        "virtualNetworkRuleName": {
-            "type": "string",
-            "defaultValue": "AllowSubnet",
-            "metadata": {
-                "description": "Virtual Network RuleName"
-            }
-        },
-        "vnetAddressPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/16",
-            "metadata": {
-                "description": "Virtual Network Address Prefix"
-            }
-        },
-        "subnetPrefix": {
-            "type": "string",
-            "defaultValue": "10.0.0.0/16",
-            "metadata": {
-                "description": "Subnet Address Prefix"
-            }
+            "type": "String"
         }
     },
-    "variables": {
-        "firewallrules": {
-            "batch": {
-                "rules": [
-                    {
-                        "Name": "rule1",
-                        "StartIpAddress": "0.0.0.0",
-                        "EndIpAddress": "255.255.255.255"
-                    },
-                    {
-                        "Name": "rule2",
-                        "StartIpAddress": "0.0.0.0",
-                        "EndIpAddress": "255.255.255.255"
-                    }
-                ]
-            }
-        }
-    },
+    "variables": {},
     "resources": [
         {
-            "apiVersion": "2018-06-01",
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworkName')]",
-            "location": "[parameters('location')]",
-            "properties": {
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "[parameters('vnetAddressPrefix')]"
-                    ]
-                }
-            },
-            "resources": [
-                {
-                    "apiVersion": "2018-06-01",
-                    "type": "subnets",
-                    "location": "[parameters('location')]",
-                    "name": "[parameters('subnetName')]",
-                    "dependsOn": [
-                        "[parameters('virtualNetworkName')]"
-                    ],
-                    "properties": {
-                        "addressPrefix": "[parameters('subnetPrefix')]"
-                    }
-                }
-            ]
-        },
-        {
-            "apiVersion": "2017-12-01",
             "type": "Microsoft.DBforMySQL/servers",
-            "location": "[parameters('location')]",
-            "name": "[parameters('serverName')]",
             "sku": {
                 "name": "[parameters('skuName')]",
                 "tier": "[parameters('skuTier')]",
@@ -206,8 +118,12 @@
                 "size": "[parameters('skuSizeMB')]",
                 "family": "[parameters('skuFamily')]"
             },
+            "kind": "",
+            "name": "[parameters('serverName')]",
+            "apiVersion": "2017-12-01",
+            "location": "[parameters('location')]",
             "properties": {
-                "version": "[parameters('mysqlVersion')]",
+                "version": "[parameters('version')]",
                 "administratorLogin": "[parameters('administratorLogin')]",
                 "administratorLoginPassword": "[parameters('administratorLoginPassword')]",
                 "storageProfile": {
@@ -215,39 +131,6 @@
                     "backupRetentionDays": "[parameters('backupRetentionDays')]",
                     "geoRedundantBackup": "[parameters('geoRedundantBackup')]"
                 }
-            },
-            "resources": [
-                {
-                    "name": "[parameters('virtualNetworkRuleName')]",
-                    "type": "virtualNetworkRules",
-                    "apiVersion": "2017-12-01",
-                    "properties": {
-                        "virtualNetworkSubnetId": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'), parameters('subnetName'))]",
-                        "ignoreMissingVnetServiceEndpoint": true
-                    },
-                    "dependsOn": [
-                        "[concat('Microsoft.DBforMySQL/servers/', parameters('serverName'))]"
-                    ]
-                }
-            ]
-        },
-		{
-            "name": "[concat(parameters('serverName'),'/',variables('firewallrules').batch.rules[copyIndex()].Name)]",
-            "type": "Microsoft.DBforMySQL/servers/firewallRules",
-            "apiVersion": "2017-12-01",
-            "location": "[parameters('location')]",
-            "dependsOn": [
-                "[concat('Microsoft.DBforMySQL/servers/', parameters('serverName'))]"
-            ],
-            "copy": {
-                "name": "firewallRulesCopy",
-                "mode": "Serial",
-                "batchSize": 1,
-                "count": "[length(variables('firewallrules').batch.rules)]"
-            },
-            "properties": {
-                "StartIpAddress": "[variables('firewallrules').batch.rules[copyIndex()].StartIpAddress]",
-                "EndIpAddress": "[variables('firewallrules').batch.rules[copyIndex()].EndIpAddress]"
             }
         }
     ]
