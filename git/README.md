@@ -1,2 +1,2 @@
 
-Przejrzyj [**POdstawy git **](GIT_INTRO.md) 
+Przejrzyj [**Podstawy git **](GIT_INTRO.md) 
