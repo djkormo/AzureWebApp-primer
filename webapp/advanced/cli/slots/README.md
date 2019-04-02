@@ -15,11 +15,13 @@
 > az group create --name $AZURE_GROUP 
 
 
-AZURE_APPNAME=myAppServicePlanforWebApp2019
-AZURE_WEBNAME=myWebApp2019forDemo
+> AZURE_APPNAME=myAppServicePlanforWebApp2019
+
+> AZURE_WEBNAME=myWebApp2019forDemo
 
 ###### utworzenie App Service Plan
-> az appservice plan create --name $AZURE_APPNAME --resource-group  $AZURE_GROUP --sku S1 ##--is-linux
+
+> az appservice plan create --name $AZURE_APPNAME --resource-group  $AZURE_GROUP --sku S1 
 
 ###### utworzenie WebAppp w ramach App Service Plan
 
@@ -36,12 +38,14 @@ AZURE_WEBNAME=myWebApp2019forDemo
 
 
 ###### utworzenie slotow
+
 > az webapp deployment slot create --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot DEV
 > az webapp deployment slot create --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot UAT
 
 
 
 ###### powiązanie slotow  ze zrodlem  na Githubie
+
 > az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot DEV \
 --repo-url https://github.com/Azure-Samples/php-docs-hello-world --branch master --manual-integration
 
