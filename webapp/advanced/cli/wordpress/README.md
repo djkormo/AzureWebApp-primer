@@ -54,7 +54,7 @@
 
 >  --name $AZURE_MYSQLSERVER  --location $AZURE_LOCATION --admin-user myadmin \
 
->  --admin-password Pa$$word57, --sku-name B_Gen5_2 --version 5.7
+>  --admin-password Pa55word57, --sku-name B_Gen5_2 --version 5.7
 
 
 ###### utworzenie bazy mysql ....
@@ -72,7 +72,8 @@
 
 ###### z poziomu Azure Cloud Shell 
 
-> mysql –h mysqlserver2019forwebapp.mysql.database.azure.com  -u myadmin@mysqlserver2019forwebapp -p 
+
+> mysql -h mysqlserver2019forwebapp.mysql.database.azure.com -u myadmin@mysqlserver2019forwebapp -p
 
 > /* drop database if exists wordpress; */ 
 
@@ -83,8 +84,6 @@
 > GRANT ALL PRIVILEGES ON wordpress.* TO 'wordpress'; 
 
 > FLUSH PRIVILEGES;
-
-
 
 
 
