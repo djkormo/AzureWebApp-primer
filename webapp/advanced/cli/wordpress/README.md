@@ -61,7 +61,7 @@
 
 > az mysql db create -g $AZURE_GROUP -s $AZURE_MYSQLSERVER -n $AZURE_MYSQLDATABASE
 
-# ustawienie reguły firewalla
+###### ustawienie reguły firewalla
 
 > az mysql server firewall-rule create -g $AZURE_GROUP  -s $AZURE_MYSQLSERVER \
 
