@@ -46,8 +46,9 @@
             }
         },
         "skuName": {
-            "defaultValue": "GP_Gen5_2",
+            "defaultValue": "B_Gen5_2",
             "allowedValues": [
+				"B_Gen5_2",
                 "GP_Gen5_2",
                 "GP_Gen5_4",
                 "GP_Gen5_8",
@@ -65,10 +66,11 @@
             }
         },
         "skuSizeMB": {
-            "defaultValue": 51200,
+            "defaultValue": 5120,
             "allowedValues": [
                 102400,
-                51200
+                51200,
+				5120
             ],
             "type": "Int",
             "metadata": {
@@ -76,7 +78,7 @@
             }
         },
         "skuTier": {
-            "defaultValue": "GeneralPurpose",
+            "defaultValue": "Basic",
             "allowedValues": [
                 "Basic",
                 "GeneralPurpose",
