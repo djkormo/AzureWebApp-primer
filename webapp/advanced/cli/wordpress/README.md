@@ -44,8 +44,32 @@
 
 ###### Utworzenie bazy Danych
 
+AZURE_MYSQLSERVER=mysqlserver2019forwebapp
+AZURE_MYSQLDATABASE=wordpress 
 
-# z poziomu Azure Cloud Shell 
+###### utworzenie serwera mysql, koniecznie nalezy zmienic hasło (--admin-password)
+
+> az mysql server create --resource-group $AZURE_GROUP \
+
+>  --name $AZURE_MYSQLSERVER  --location $AZURE_LOCATION --admin-user myadmin \
+
+>  --admin-password Pa$$word57, --sku-name B_Gen5_2 --version 5.7
+
+
+###### utworzenie bazy mysql ....
+
+> az mysql db create -g rg-web-app -s $AZURE_MYSQLSERVER -n $AZURE_MYSQLDATABASE
+
+# ustawienie reguły firewalla
+
+> az mysql server firewall-rule create -g rg-web-app  -s mysqlserver2019forwebapp \
+
+> -n allowip --start-ip-address 0.0.0.0 --end-ip-address 1255.255.255.255
+
+
+
+
+###### z poziomu Azure Cloud Shell 
 
 > mysql –h mysqlforphp.mysql.database.azure.com  -u mysqladmin@mysqlforphp -p 
 
