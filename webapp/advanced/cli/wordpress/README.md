@@ -98,16 +98,16 @@
 
 
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
---settings WORDPRESS_DB_NAME=wordpress
+  --settings WORDPRESS_DB_NAME=wordpress
 
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
---settings WORDPRESS_DB_USER=wordpress
+  --settings WORDPRESS_DB_USER=wordpress@mysqlserver2019forwebapp
 
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
---settings WORDPRESS_DB_PASSWORD=WP-Passw0rd
+  --settings WORDPRESS_DB_PASSWORD=WP-Passw0rd
 
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
---settings WORDPRESS_DB_HOST=mysqlserver2019forwebapp.mysql.database.azure.com
+  --settings WORDPRESS_DB_HOST=mysqlserver2019forwebapp.mysql.database.azure.com
 
 
 
