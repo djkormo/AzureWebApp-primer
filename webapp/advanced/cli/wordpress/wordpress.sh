@@ -26,7 +26,7 @@ az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZU
 # dowiazanie kodu aplikacji z repozytorium na Githubie
 
 az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP   \
-  --repo-url https://github.com/djkormo/wordpressfiles--branch master --manual-integration
+  --repo-url https://github.com/djkormo/wordpressfiles --branch master --manual-integration
 
 
 # Utworzenie bazy Danych
@@ -53,16 +53,16 @@ az mysql server firewall-rule create -g $AZURE_GROUP  -s $AZURE_MYSQLSERVER \
    
    
 # uzupelnienie konfiguracji aplikacji do polączenia z bazą danych    
-az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
+az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_NAME=wordpress
 
-az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
+az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_USER=wordpress
 
-az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
+az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_PASSWORD=WP-Passw0rd
 
-az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
+az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_HOST=mysqlserver2019forwebapp.mysql.database.azure.com
 
    
