@@ -66,4 +66,5 @@ az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_HOST=mysqlserver2019forwebapp.mysql.database.azure.com
 
    
+mysql -h mysqlserver2019forwebapp.mysql.database.azure.com -u myadmin@mysqlserver2019forwebapp -p  <mysql.sql 
    
