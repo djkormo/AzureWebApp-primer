@@ -26,14 +26,14 @@ az monitor autoscale rule create \
   --resource $AZURE_APPNAME \
   --resource-type Microsoft.Web/serverFarms \
   --autoscale-name autoscale \
-  --condition "Percentage CPU > 70 avg 5m" \
+  --condition "CpuPercentage > 70 avg 5m" \
   --scale out 1
   
 az monitor autoscale rule create  --resource-group $AZURE_GROUP   \
 --resource mywebapp2019fordemo  \
 --resource-type 'Microsoft.Web/sites' \
 --autoscale-name autoscale    \
---condition "CPU Percentage  > 50 avg 5m"   \
+--condition "CpuPercentage  > 50 avg 5m"   \
 --scale out 1
 
 
@@ -41,7 +41,7 @@ az monitor autoscale rule create  --resource-group $AZURE_GROUP   \
 --resource mywebapp2019fordemo  \
 --resource-type 'Microsoft.Web/sites' \
 --autoscale-name autoscale    \
---condition "Percentage CPU < 50 avg 5m"   \
+--condition "CpuPercentage < 50 avg 5m"   \
 --scale in 1
 
   
