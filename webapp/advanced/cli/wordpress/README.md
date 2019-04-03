@@ -97,6 +97,7 @@
 > define('DB_HOST', getenv('WORDPRESS_DB_HOST'));
 
 
+
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_APPNAME \
   --settings WORDPRESS_DB_NAME=wordpress
 
