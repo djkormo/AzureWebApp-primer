@@ -86,6 +86,29 @@
 > FLUSH PRIVILEGES;
 
 
+###### Fragment konfiguracji pliku wp-config.php :
+
+> define('DB_NAME', getenv('WORDPRESS_DB_NAME')); 
+
+> define('DB_USER', getenv('WORDPRESS_DB_USER')); 
+
+> define('DB_PASSWORD', getenv('WORDPRESS_DB_PASSWORD')); 
+
+> define('DB_HOST', getenv('WORDPRESS_DB_HOST'));
+
+
+az webapp config appsettings set -g $AZURE_GROUP -n AZURE_APPNAME \
+--settings WORDPRESS_DB_NAME=wordpress
+
+az webapp config appsettings set -g $AZURE_GROUP -n AZURE_APPNAME \
+--settings WORDPRESS_DB_USER=wordpress
+
+az webapp config appsettings set -g $AZURE_GROUP -n AZURE_APPNAME \
+--settings WORDPRESS_DB_PASSWORD=WP-Passw0rd
+
+az webapp config appsettings set -g $AZURE_GROUP -n AZURE_APPNAME \
+--settings WORDPRESS_DB_HOST=mysqlserver2019forwebapp.mysql.database.azure.com
+
 
 
 
