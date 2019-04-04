@@ -51,5 +51,13 @@ az monitor autoscale rule create \
   
  # scale in
 
+ 
+ az monitor autoscale rule create \
+  --resource-group $AZURE_GROUP \
+  --resource $AZURE_APPNAME \
+  --resource-type Microsoft.Web/serverFarms \
+  --autoscale-name autoscale \
+  --condition "CpuPercentage < 30 avg 5m" \
+  --scale in 1  
 
  
