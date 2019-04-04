@@ -36,3 +36,20 @@ az monitor autoscale create \
   --min-count 1 \
   --max-count 4 \
   --count 2 
+  
+# scale out
+
+az monitor autoscale rule create \
+  --resource-group $AZURE_GROUP \
+  --resource $AZURE_APPNAME \
+  --resource-type Microsoft.Web/serverFarms \
+  --autoscale-name autoscale \
+  --condition "CpuPercentage > 70 avg 5m" \
+  --scale out 1  
+  
+  
+  
+ # scale in
+
+
+ 
