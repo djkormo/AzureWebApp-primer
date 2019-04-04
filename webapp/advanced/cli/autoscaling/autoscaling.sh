@@ -28,11 +28,11 @@ az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE
   --repo-url https://github.com/djkormo/simple-chess-ai --branch master --manual-integration
 
   # ustawienie wsstepnej konfiguracji skalowania 
-az monitor autoscale create
---resource-group $AZURE_GROUP
---resource $AZURE_APPNAME
---resource-type Microsoft.Web/serverFarms
---name autoscale
---min-count 1
---max-count 4
---count 2
+az monitor autoscale create \
+  --resource-group $AZURE_GROUP \
+  --resource $AZURE_APPNAME \
+  --resource-type Microsoft.Web/serverFarms \
+  --name autoscale \
+  --min-count 1 \
+  --max-count 4 \
+  --count 2 
