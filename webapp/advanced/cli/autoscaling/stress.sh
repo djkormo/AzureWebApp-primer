@@ -17,3 +17,5 @@ do
 done
 
 
+for i in {0..60}; do (curl -Is https://mywebapp2019fordemoauto11375.azurewebsites.net | head -n1 &) 2>/dev/null; sleep 1; done;
+
