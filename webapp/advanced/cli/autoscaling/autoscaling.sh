@@ -2,8 +2,8 @@
 
 AZURE_GROUP=rg-web-app-auto
 AZURE_LOCATION=northeurope
-AZURE_APPNAME=myAppServicePlanforWebApp2019auto
-AZURE_WEBNAME=myWebApp2019forDemoauto
+AZURE_APPNAME=myAppServicePlanforWebApp2019auto$RANDOM
+AZURE_WEBNAME=myWebApp2019forDemoauto$RANDOM
 
 
 # ustalenie domyslnej grupy 

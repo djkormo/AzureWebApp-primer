@@ -11,9 +11,9 @@ az configure --defaults location=$AZURE_LOCATION
 
 az group create --name $AZURE_GROUP 
 
-AZURE_APPNAME=myAppServicePlanforWebApp2019
+AZURE_APPNAME=myAppServicePlanforWebApp2019$RANDOM
 
-AZURE_WEBNAME=myWebApp2019forDemo
+AZURE_WEBNAME=myWebApp2019forDemo$RANDOM
 
 # utworzenie App Service Plan
 
