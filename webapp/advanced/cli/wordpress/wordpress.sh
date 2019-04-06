@@ -72,3 +72,9 @@ az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
    
 mysql -h $AZURE_MYSQLSERVER.mysql.database.azure.com -u myadmin@$AZURE_MYSQLSERVER -p  <mysql.sql 
    
+# Uzupelnieni aplikacji o phpmyadmin    
+# https://sunithamk.wordpress.com/2016/01/04/how-to-use-phpmyadmin-for-your-azure-web-app/   
+#https://medium.com/@brijrajsingh/installing-phpmyadmin-for-azure-webapp-using-site-control-manager-kudu-bd73c8708f84  
+   
+   
+   

@@ -5,8 +5,8 @@ RND=$RANDOM
 AZURE_GROUP=rg-web-app-slot
 AZURE_LOCATION=northeurope
 
-AZURE_APPNAME=myAppServicePlanforWebApp2019$RND
-AZURE_WEBNAME=myWebApp2019forDemo$RND
+AZURE_APPNAME=azappservice-2019-slot$RND
+AZURE_WEBNAME=azwebapp-2019-slot$RND
 
 
 az configure --defaults group=$AZURE_GROUP

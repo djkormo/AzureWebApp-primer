@@ -2,10 +2,10 @@
 
 RND=$RANDOM
 
-AZURE_GROUP=rg-web-app-auto
+AZURE_GROUP=rg-web-app-autoscale
 AZURE_LOCATION=northeurope
-AZURE_APPNAME=myAppServicePlanforWebApp2019auto$RND
-AZURE_WEBNAME=myWebApp2019forDemoauto$RND
+AZURE_APPNAME=azappservice-2019-autoscale$RND
+AZURE_WEBNAME=azwebapp-2019-autoscale$RND
 
 
 # ustalenie domyslnej grupy 
@@ -22,7 +22,7 @@ az appservice plan create --name $AZURE_APPNAME --resource-group $AZURE_GROUP --
 # utworzenie planu app service 
 
 az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZURE_WEBNAME \
---runtime 'PHP|7.0'
+  --runtime 'PHP|7.0'
 
 # powiazanie z kodem repozytorium Githuba
 
