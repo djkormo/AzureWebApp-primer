@@ -1,6 +1,13 @@
+# zmienne konfiguracyjne
+RND=$RANDOM
 AZURE_GROUP=rg-web-app
-
 AZURE_LOCATION=northeurope
+
+AZURE_APPNAME=myAppServicePlanforWebApp2019$RND
+AZURE_WEBNAME=myWebApp2019forDemo$RND
+
+AZURE_MYSQLSERVER=mysqlserver2019forwebapp$RND
+AZURE_MYSQLDATABASE=wordpress 
 
 az configure --defaults group=$AZURE_GROUP
 
@@ -11,9 +18,7 @@ az configure --defaults location=$AZURE_LOCATION
 
 az group create --name $AZURE_GROUP 
 
-AZURE_APPNAME=myAppServicePlanforWebApp2019$RANDOM
 
-AZURE_WEBNAME=myWebApp2019forDemo$RANDOM
 
 # utworzenie App Service Plan
 
@@ -30,10 +35,6 @@ az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE
 
 
 # Utworzenie bazy Danych
-
-AZURE_MYSQLSERVER=mysqlserver2019forwebapp
-
-AZURE_MYSQLDATABASE=wordpress 
 
 # utworzenie serwera mysql, koniecznie nalezy zmienic hasło (--admin-password)
 
@@ -57,14 +58,14 @@ az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_NAME=wordpress
 
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
---settings WORDPRESS_DB_USER=wordpress@mysqlserver2019forwebapp
+--settings WORDPRESS_DB_USER=wordpress@$AZURE_MYSQLSERVER
 
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_PASSWORD=WP-Passw0rd
 
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
---settings WORDPRESS_DB_HOST=mysqlserver2019forwebapp.mysql.database.azure.com
+--settings WORDPRESS_DB_HOST=$AZURE_MYSQLSERVER.mysql.database.azure.com
 
    
-mysql -h mysqlserver2019forwebapp.mysql.database.azure.com -u myadmin@mysqlserver2019forwebapp -p  <mysql.sql 
+mysql -h $AZURE_MYSQLSERVER.mysql.database.azure.com -u myadmin@$AZURE_MYSQLSERVER -p  <mysql.sql 
    

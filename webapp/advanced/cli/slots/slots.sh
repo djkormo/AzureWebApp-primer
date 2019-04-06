@@ -1,8 +1,12 @@
+# zmienne konfiguracyjne
+
+RND=$RANDOM
+
 AZURE_GROUP=rg-web-app-slot
 AZURE_LOCATION=northeurope
 
-AZURE_APPNAME=myAppServicePlanforWebApp2019$RANDOM
-AZURE_WEBNAME=myWebApp2019forDemo$RANDOM
+AZURE_APPNAME=myAppServicePlanforWebApp2019$RND
+AZURE_WEBNAME=myWebApp2019forDemo$RND
 
 
 az configure --defaults group=$AZURE_GROUP
