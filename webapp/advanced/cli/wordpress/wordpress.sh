@@ -5,7 +5,7 @@ AZURE_LOCATION=northeurope
 
 AZURE_APPNAME=myAppServicePlanforWebApp2019$RND
 AZURE_WEBNAME=myWebApp2019forDemo$RND
-AZURE_WEBNAME_ADMIN=$AZURE_WEBNAME_ADMIN
+AZURE_WEBNAME_ADMIN=myWebApp2019forDemo_ADMIN$RND
 AZURE_MYSQLSERVER=mysqlserver2019forwebapp$RND
 AZURE_MYSQLDATABASE=wordpress 
 
@@ -33,6 +33,18 @@ az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZU
 az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP   \
   --repo-url https://github.com/djkormo/wordpressfiles --branch master --manual-integration
 
+  
+# dodanie aplikacji z phpmyadmin
+   
+# utworzenie WebAppp w ramach App Service Plan
+
+az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZURE_WEBNAME_ADMIN  --runtime 'PHP|7.0' 
+  
+# dowiazanie kodu aplikacji z repozytorium na Githubie
+
+az webapp deployment source config --name $AZURE_WEBNAME_ADMIN --resource-group $AZURE_GROUP   \
+  --repo-url https://github.com/phpmyadmin/phpmyadmin  --branch master --manual-integration  
+  
 
 # Utworzenie bazy Danych
 
@@ -66,16 +78,7 @@ az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_HOST=$AZURE_MYSQLSERVER.mysql.database.azure.com
 
-# dodanie aplikacji z phpmyadmin
-   
-# utworzenie WebAppp w ramach App Service Plan
 
-az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZURE_WEBNAME_ADMIN  --runtime 'PHP|7.0' 
-  
-# dowiazanie kodu aplikacji z repozytorium na Githubie
-
-az webapp deployment source config --name $AZURE_WEBNAME_ADMIN --resource-group $AZURE_GROUP   \
-  --repo-url https://github.com/phpmyadmin/phpmyadmin  --branch master --manual-integration
 
   # uzupelnienie konfiguracji  mysql 
    
