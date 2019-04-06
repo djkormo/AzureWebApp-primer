@@ -5,7 +5,6 @@ AZURE_LOCATION=northeurope
 
 AZURE_APPNAME=azappservice-2019-wordpress$RND
 AZURE_WEBNAME=azwebapp-wordpress$RND
-AZURE_WEBNAME_ADMIN=azwebapp-wordpress-admin$RND
 AZURE_MYSQLSERVER=mysqlserver-wordpress$RND
 AZURE_MYSQLDATABASE=wordpress 
 
@@ -33,18 +32,7 @@ az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZU
 az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP   \
   --repo-url https://github.com/djkormo/wordpressfiles --branch master --manual-integration
 
-  
-# dodanie aplikacji z phpmyadmin
-   
-# utworzenie WebAppp w ramach App Service Plan
-
-az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZURE_WEBNAME_ADMIN  --runtime 'PHP|7.0' 
-  
-# dowiazanie kodu aplikacji z repozytorium na Githubie
-
-az webapp deployment source config --name $AZURE_WEBNAME_ADMIN --resource-group $AZURE_GROUP   \
-  --repo-url https://github.com/phpmyadmin/phpmyadmin  --branch master --manual-integration  
-  
+ 
 
 # Utworzenie bazy Danych
 
