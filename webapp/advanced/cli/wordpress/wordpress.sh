@@ -66,9 +66,24 @@ az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 az webapp config appsettings set -g $AZURE_GROUP -n $AZURE_WEBNAME \
 --settings WORDPRESS_DB_HOST=$AZURE_MYSQLSERVER.mysql.database.azure.com
 
+# utworzenie Trafic Managera na  froncie 
+
+# utworzenie profilu 
+az network traffic-manager profile create -g $AZURE_GROUP -n trafic-manager-wordpress --routing-method Performance \
+  --unique-dns-name mywordpress$RND --ttl 30 --protocol HTTP --port 80 --path "/html/"
+
+  
+# pobranie identyfikatora zasobu
+
+$MyWebApp1Id=$(az resource show --resource-group $AZURE_GROUP --name $AZURE_WEBNAME --resource-type Microsoft.Web/sites --query id --output tsv)
+  
+# utworzenie endpointu
+  
+az network traffic-manager endpoint create -g AZURE_GROUP --profile-name trafic-manager-wordpress \
+                            -n mywordpress-endpoint --type azureEndpoints --target-resource-id $MyWebApp1Id --endpoint-status enabled
 
 
-  # uzupelnienie konfiguracji  mysql 
+# uzupelnienie konfiguracji  mysql 
    
 mysql -h $AZURE_MYSQLSERVER.mysql.database.azure.com -u myadmin@$AZURE_MYSQLSERVER -p  <mysql.sql 
    
