@@ -79,7 +79,7 @@ MyWebApp1Id=$(az resource show --resource-group $AZURE_GROUP --name $AZURE_WEBNA
   
 # utworzenie endpointu
   
-az network traffic-manager endpoint create -g AZURE_GROUP --profile-name trafic-manager-wordpress \
+az network traffic-manager endpoint create -g $AZURE_GROUP --profile-name trafic-manager-wordpress \
                             -n mywordpress-endpoint --type azureEndpoints --target-resource-id $MyWebApp1Id --endpoint-status enabled
 
 							
