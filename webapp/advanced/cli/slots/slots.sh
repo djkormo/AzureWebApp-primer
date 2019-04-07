@@ -33,20 +33,25 @@ az webapp create --resource-group $AZURE_GROUP --plan $AZURE_APPNAME --name $AZU
 # dowiazanie kodu aplikacji z repozytorium na Githubie
 
 az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP \
- --repo-url https://github.com/djkormo/simple-chess-ai --branch master --manual-integration
+ --repo-url https://github.com/djkormo/aws-demo-php-simple-app --branch master --manual-integration
 
 
 # utworzenie slotow
 
-az webapp deployment slot create --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot DEV
+az webapp deployment slot create --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot DEVELOP
 az webapp deployment slot create --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot UAT
 
 
 
 # powiązanie slotow  ze zrodlem  na Githubie
 
-az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot DEV \
-  --repo-url https://github.com/Azure-Samples/php-docs-hello-world --branch master --manual-integration
+az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot DEVELOP \
+  --repo-url https://github.com/djkormo/aws-demo-php-simple-app --branch develop --manual-integration
 
 az webapp deployment source config --name $AZURE_WEBNAME --resource-group $AZURE_GROUP --slot UAT \
-  --repo-url https://github.com/aws-samples/aws-demo-php-simple-app --branch master --manual-integration
+  --repo-url https://github.com/djkormo/aws-demo-php-simple-app --branch uat --manual-integration
+  
+  
+  
+  
+  

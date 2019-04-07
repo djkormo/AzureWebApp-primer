@@ -75,13 +75,16 @@ az network traffic-manager profile create -g $AZURE_GROUP -n trafic-manager-word
   
 # pobranie identyfikatora zasobu
 
-$MyWebApp1Id=$(az resource show --resource-group $AZURE_GROUP --name $AZURE_WEBNAME --resource-type Microsoft.Web/sites --query id --output tsv)
+MyWebApp1Id=$(az resource show --resource-group $AZURE_GROUP --name $AZURE_WEBNAME --resource-type Microsoft.Web/sites --query id --output tsv)
   
 # utworzenie endpointu
   
 az network traffic-manager endpoint create -g AZURE_GROUP --profile-name trafic-manager-wordpress \
                             -n mywordpress-endpoint --type azureEndpoints --target-resource-id $MyWebApp1Id --endpoint-status enabled
 
+							
+#							./wordpress.sh: line 78: #=/subscriptions/1abe75fb-a96b-42c1-be59-a3f52d3439c8/resourceGroups/rg-web-app-wordpress/providers/Microsoft.Web/sites/azwebapp-wordpress24677: No such file or directory
+#az network traffic-manager endpoint create: error: argument --target-resource-id: expected one argument
 
 # uzupelnienie konfiguracji  mysql 
    
