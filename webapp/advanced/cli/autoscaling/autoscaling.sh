@@ -46,7 +46,7 @@ az monitor autoscale rule create \
   --resource $AZURE_APPNAME \
   --resource-type Microsoft.Web/serverFarms \
   --autoscale-name autoscale \
-  --condition "CpuPercentage > 60 avg 5m" \
+  --condition "CpuPercentage > 70 avg 5m" \
   --scale out 1  
   
 # scale out Memory
@@ -56,7 +56,7 @@ az monitor autoscale rule create \
   --resource $AZURE_APPNAME \
   --resource-type Microsoft.Web/serverFarms \
   --autoscale-name autoscale \
-  --condition "MemoryPercentage > 60 avg 5m" \
+  --condition "MemoryPercentage > 70 avg 5m" \
   --scale out 1  
   
  # scale in CPU
@@ -67,7 +67,7 @@ az monitor autoscale rule create \
   --resource $AZURE_APPNAME \
   --resource-type Microsoft.Web/serverFarms \
   --autoscale-name autoscale \
-  --condition "CpuPercentage < 30 avg 5m" \
+  --condition "CpuPercentage < 60 avg 5m" \
   --scale in 1  
  
 
@@ -80,7 +80,7 @@ az monitor autoscale rule create \
   --resource $AZURE_APPNAME \
   --resource-type Microsoft.Web/serverFarms \
   --autoscale-name autoscale \
-  --condition "MemoryPercentage < 30 avg 5m" \
+  --condition "MemoryPercentage < 60 avg 5m" \
   --scale in 1   
   
   
